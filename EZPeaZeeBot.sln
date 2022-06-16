@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EZPeaZeeBot", "EZPeaZeeBot\EZPeaZeeBot.csproj", "{EC0843AC-D83F-4230-B397-5752C995722C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleBot", "TestBot\ExampleBot.csproj", "{7B04305A-AD20-49F0-B1A2-BD6D2F1AF8BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC0843AC-D83F-4230-B397-5752C995722C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC0843AC-D83F-4230-B397-5752C995722C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC0843AC-D83F-4230-B397-5752C995722C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC0843AC-D83F-4230-B397-5752C995722C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B04305A-AD20-49F0-B1A2-BD6D2F1AF8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B04305A-AD20-49F0-B1A2-BD6D2F1AF8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B04305A-AD20-49F0-B1A2-BD6D2F1AF8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B04305A-AD20-49F0-B1A2-BD6D2F1AF8BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32EF89C9-B018-4E21-BE73-30954F081CC7}
+	EndGlobalSection
+EndGlobal
