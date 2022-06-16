@@ -237,6 +237,11 @@ namespace EZPeaZeeBot
             {
                 await service.RemoveModuleAsync(service.Modules.First(i => i.Name == "HelpBaseInteraction"));
             }
+            foreach (var cmd in service.SlashCommands)
+            {
+                if (!cmd.Name.Contains(' ')) continue;
+                await service.RemoveModuleAsync(cmd.Module);
+            }
             Bot._client.Ready += Readied;
             Bot._client.SlashCommandExecuted += SlashCommandExecuted;
         }
@@ -295,6 +300,11 @@ namespace EZPeaZeeBot
             if (!help_create && service.Modules.Any(m => m.Name == "HelpBaseCommand"))
             {
                 await service.RemoveModuleAsync(service.Modules.First(i => i.Name == "HelpBaseCommand"));
+            }
+            foreach (var cmd in service.Commands)
+            {
+                if (!cmd.Name.Contains(' ')) continue;
+                await service.RemoveModuleAsync(cmd.Module);
             }
             Bot._client.MessageReceived += CommandMessage;
         }
