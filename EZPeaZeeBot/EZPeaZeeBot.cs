@@ -175,7 +175,6 @@ namespace EZPeaZeeBot
         public string prefix { get; private set; } = "ez!";
         /// <summary>
         /// Creates a Config Object from a absolute file path
-        /// <br><i>Can Be Overridden</i></br>
         /// </summary>
         /// <param name="path_to_config">
         /// An Absolute file path to a config file. Config file must be a .config file.
@@ -184,7 +183,7 @@ namespace EZPeaZeeBot
         /// <returns>
         /// A Config Object with the token and prefix
         /// </returns>
-        virtual public Config Create(string path_to_config)
+        public static Config Create(string path_to_config)
         {
             if (!path_to_config.Contains('\\')) throw new Exception("File Path Invalid");
             if (!path_to_config.Split("\\").Last().EndsWith(".config")) throw new Exception("Target File Is Not A .config File");
