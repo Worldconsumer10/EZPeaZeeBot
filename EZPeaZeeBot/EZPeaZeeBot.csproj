@@ -4,7 +4,23 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>Create a discord bot with only 4 lines!</Description>
+    <PackageProjectUrl>https://github.com/Worldconsumer10/EZPeaZeeBot</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Worldconsumer10/EZPeaZeeBot</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>discord; bot;</PackageTags>
+    <NeutralLanguage>en-AU</NeutralLanguage>
+    <Copyright>MIT</Copyright>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Discord.Net" Version="3.7.2" />

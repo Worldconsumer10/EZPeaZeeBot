@@ -6,7 +6,11 @@ using System.Text.RegularExpressions;
 
 namespace EZPeaZeeBot
 {
-    public class CustomConsole
+    /// <summary>
+    /// Custom Console.. Allows color within the console
+    /// <br><b><i>Cannot Be Inherited!</i></b></br>
+    /// </summary>
+    sealed public class CustomConsole
     {
         /// <summary>
         /// Append text content to console with custom foreground or background colors
@@ -82,7 +86,11 @@ namespace EZPeaZeeBot
             return Task.CompletedTask;
         }
     }
-    public class Bot
+    /// <summary>
+    /// Used in creating the bot.
+    /// <br><b><i>Cannot Be Inherited!</i></b></br>
+    /// </summary>
+    sealed public class Bot
     {
         #pragma warning disable CS8618
         internal static DiscordSocketClient _client { get; private set; }
@@ -115,8 +123,22 @@ namespace EZPeaZeeBot
             await client.LoginAsync(Discord.TokenType.Bot,config.token);
             await client.StartAsync();
             _client = client;
+            _client.Disconnected += _client_Disconnected;
             return client;
         }
+
+        private static async Task _client_Disconnected(Exception arg)
+        {
+            await Task.Delay(10000);
+            if (_client == null) return;
+            if (_client.ConnectionState == ConnectionState.Connected) return;
+            CustomConsole.WriteLine("[EZPZBot] Auto Reconnecting",ConsoleColor.DarkYellow);
+            await _client.LogoutAsync();
+            await _client.StopAsync();
+            await _client.LoginAsync(TokenType.Bot,_config.token);
+            await _client.StartAsync();
+        }
+
         /// <summary>
         /// Creates a bot and logs it in with the provided config.
         /// <br>This is the advanced version that allows you to make your own DiscordSocketConfig. This config is different from your login config</br>
@@ -143,12 +165,17 @@ namespace EZPeaZeeBot
             return client;
         }
     }
+    /// <summary>
+    /// Used in creating the bot.
+    /// <br><i>Can Be Inherited!</i></br>
+    /// </summary>
     public class Config
     {
         public string token { get; private set; } = string.Empty;
         public string prefix { get; private set; } = "ez!";
         /// <summary>
         /// Creates a Config Object from a absolute file path
+        /// <br><i>Can Be Overridden</i></br>
         /// </summary>
         /// <param name="path_to_config">
         /// An Absolute file path to a config file. Config file must be a .config file.
@@ -157,7 +184,7 @@ namespace EZPeaZeeBot
         /// <returns>
         /// A Config Object with the token and prefix
         /// </returns>
-        public static Config Create(string path_to_config)
+        virtual public Config Create(string path_to_config)
         {
             if (!path_to_config.Contains('\\')) throw new Exception("File Path Invalid");
             if (!path_to_config.Split("\\").Last().EndsWith(".config")) throw new Exception("Target File Is Not A .config File");
@@ -185,7 +212,11 @@ namespace EZPeaZeeBot
             catch(Exception ex) { throw new Exception($"Unexpected Error While Created Config.\n{ex.Source}\n{ex.Message}\n\n{ex.StackTrace}"); }
         }
     }
-    public class Interactions
+    /// <summary>
+    /// Interaction Handler And Creator.
+    /// <br><b><i>Cannot Be Inherited!</i></b></br>
+    /// </summary>
+    sealed public class Interactions
     {
 #pragma warning disable CS8618
         internal static InteractionService _interactions { get; set; }
@@ -263,7 +294,11 @@ namespace EZPeaZeeBot
             catch (Exception) { }
         }
     }
-    public class Commands
+    /// <summary>
+    /// Command Handler And Creator
+    /// <br><b><i>Cannot Be Inherited!</i></b></br>
+    /// </summary>
+    sealed public class Commands
     {
         #pragma warning disable CS8618
         internal static CommandService _commands { get; set; }
@@ -332,7 +367,7 @@ namespace EZPeaZeeBot
                 );
         }
     }
-    public class HelpBaseCommand : ModuleBase<SocketCommandContext>
+    sealed public class HelpBaseCommand : ModuleBase<SocketCommandContext>
     {
         [Command("help")]
         [Discord.Commands.Summary("help command")]
@@ -356,7 +391,7 @@ namespace EZPeaZeeBot
             await ReplyAsync(embeds: embed_list.ToArray());
         }
     }
-    public class HelpBaseInteraction : InteractionModuleBase<SocketInteractionContext>
+    sealed public class HelpBaseInteraction : InteractionModuleBase<SocketInteractionContext>
     {
         [SlashCommand("help","help command")]
         public async Task Run()
