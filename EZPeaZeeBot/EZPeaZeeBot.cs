@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.Interactions;
+using Discord.Rest;
 using Discord.WebSocket;
 using System.Text.RegularExpressions;
 
@@ -341,6 +342,10 @@ namespace EZPeaZeeBot
                 await service.RemoveModuleAsync(cmd.Module);
             }
             Bot._client.MessageReceived += CommandMessage;
+        }
+        public static async Task<IUserMessage> InlineReply(SocketCommandContext context,string? text = null, bool isTTS = false, Embed? embed = null,AllowedMentions? allowedMentions=null, RequestOptions? requestoptions=null, MessageComponent? messageComponents=null, ISticker[]? stickers = null, Embed[]? embedarray=null)
+        {
+            return await context.Message.ReplyAsync(text, isTTS, embed, allowedMentions, requestoptions, messageComponents, stickers, embedarray);
         }
 
         private static async Task CommandMessage(SocketMessage arg)
